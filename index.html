@@ -220,6 +220,19 @@
             background-color: #ccc;
             transition: .4s;
         }
+        /* Mobile Warning Styles */
+        #mobile-warning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffcc00;
+            color: #000;
+            text-align: center;
+            padding: 10px;
+            z-index: 1000;
+        }
 
         .slider:before {
             position: absolute;
@@ -336,25 +349,12 @@
         .cookies-buttons button:hover {
             opacity: 0.9;
         }
-        #mobile-warning {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #ffcc00;
-            color: #000;
-            text-align: center;
-            padding: 10px;
-            z-index: 1000;
-        }
     </style>
 </head>
 <body>
     <div id="mobile-warning">
-        For the best experience, please switch to the desktop site because this site is optimised for Laptops/Pcs.
-    </style>
-
+        For the best experience, please switch to the desktop site.
+    </div>
     <header id="header">
         <nav>
             <img src="RxBot.png" alt="RYNX BOT Logo" class="logo">
@@ -471,6 +471,10 @@
                     localStorage.setItem('darkMode', 'disabled');
                 }
             });
+
+            if (window.innerWidth < 768) {
+            document.getElementById('mobile-warning').style.display = 'block';
+        }
 
             // Cookies Modal
             const cookiesModal = document.getElementById('cookiesModal');
