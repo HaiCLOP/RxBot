@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,19 +7,32 @@
 
     <title>RxBot | Updates</title>
     <style>
-        /* CSS styles for Blog Page */
-        body {
-            font-family: Arial, sans-serif;
+        /* Global Styles */
+        body, html {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
+            transition: background-color 0.3s, color 0.3s;
         }
 
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        header.dark-mode, footer.dark-mode {
+            background-color: #000;
+        }
+
+        /* Header Styles */
         header {
             background-color: #1c1c1c;
             color: white;
             padding: 10px 0;
+            transition: background-color 0.3s;
         }
 
         nav {
@@ -52,6 +64,7 @@
             text-decoration: none;
             font-size: 18px;
             padding: 5px 10px;
+            transition: color 0.3s;
         }
 
         nav ul li a:hover {
@@ -59,6 +72,12 @@
             border-radius: 5px;
         }
 
+        /* Dark Mode Nav Links */
+        nav ul li a.dark-mode {
+            color: #f0f0f0;
+        }
+
+        /* Main Styles */
         main {
             max-width: 1200px;
             margin: 20px auto;
@@ -76,6 +95,7 @@
             border-radius: 5px;
             margin: 20px 0;
             padding: 20px;
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         .blog-post h3 {
@@ -88,16 +108,120 @@
             line-height: 1.6;
         }
 
+        /* Dark Mode Blog Posts */
+        .blog-post.dark-mode {
+            background-color: #444;
+            border-color: #555;
+        }
+
+        /* Footer Styles */
         footer {
             background-color: #1c1c1c;
             color: #fff;
             text-align: center;
             padding: 20px 0;
+            transition: background-color 0.3s;
         }
+
+        /* Toggle Switch Styles */
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .sun-icon, .moon-icon {
+            font-size: 24px;
+            display: none;
+        }
+
+        .sun-icon {
+            color: #ffa500;
+        }
+
+        .moon-icon {
+            color: #f0f0f0;
+        }
+
+        .dark-mode .sun-icon {
+            display: inline;
+        }
+
+        .dark-mode .moon-icon {
+            display: none;
+        }
+
+        .light-mode .moon-icon {
+            display: inline;
+        }
+
+        .light-mode .sun-icon {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav>
             <img src="RxBot.png" alt="RYNX BOT Logo" class="logo">
             <ul>
@@ -109,25 +233,69 @@
                 <li><a href="status.html">Status</a></li>
             </ul>
         </nav>
+        <div class="toggle-container">
+            <span class="toggle-label sun-icon">&#x2600;</span>
+            <span class="toggle-label moon-icon">&#x1F319;</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
     </header>
 
     <main>
         <section class="blog">
             <h2>Update</h2>
             <div class="blog-post">
-                <h3> Post Title</h3>
-                <p> post content goes here. This can include updates, tips, tutorials, and more.</p>
-            </div>
+        <h3>RxBot is now Verified.</h3>
+        <p>Hey guys i am excited to say that our RxBot is now Verified Thanks for your love and support💖.</p>
+    </div>
+    <div class="blog-post">
+        <h3>Music Support ended.</h3>
+        <p>Hey Guys i am very sad to say that we have discontinue our musics due to limitation by Youtube. Thanks for your support to music.</p>
+    </div>
+    <div class="blog-post">
+        <h3>Artificial Intelligence</h3>
+        <p>Now you can use @RxBot to talk with AI.</p>
+    </div>
             <!-- Additional blog posts can be added here -->
         </section>
     </main>
 
-    <footer>
-        <p>&copy;  2024 RxDev. All rights reserved.Made with Love💖</p>
+    <footer id="footer">
+        <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
     </footer>
 
     <script>
-        // JavaScript code for Blog Page (if needed)
+        // JavaScript for Dark Mode Toggle
+        const toggleSwitch = document.getElementById('darkModeToggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+        toggleSwitch.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+                document.getElementById('header').classList.add('dark-mode');
+                document.getElementById('footer').classList.add('dark-mode');
+                document.querySelectorAll('.blog-post').forEach(post => post.classList.add('dark-mode'));
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                document.getElementById('header').classList.remove('dark-mode');
+                document.getElementById('footer').classList.remove('dark-mode');
+                document.querySelectorAll('.blog-post').forEach(post => post.classList.remove('dark-mode'));
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
     </script>
 </body>
 </html>
