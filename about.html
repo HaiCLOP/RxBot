@@ -14,6 +14,17 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        header.dark-mode, footer.dark-mode {
+            background-color: #000;
         }
 
         /* Header Styles */
@@ -21,6 +32,7 @@
             background-color: #1a1a1a;
             color: #fff;
             padding: 15px 0;
+            transition: background-color 0.3s;
         }
 
         nav {
@@ -56,6 +68,11 @@
 
         nav ul li a:hover {
             color: #ffa500;
+        }
+
+        /* Dark Mode Nav Links */
+        nav ul li a.dark-mode {
+            color: #f0f0f0;
         }
 
         /* About Section */
@@ -105,11 +122,107 @@
             color: #fff;
             text-align: center;
             padding: 20px 0;
+            transition: background-color 0.3s;
+        }
+
+        /* Toggle Switch Styles */
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .sun-icon, .moon-icon {
+            font-size: 24px;
+            display: none;
+        }
+
+        .sun-icon {
+            color: #ffa500;
+        }
+
+        .moon-icon {
+            color: #f0f0f0;
+        }
+
+        .dark-mode .sun-icon {
+            display: inline;
+        }
+
+        .dark-mode .moon-icon {
+            display: none;
+        }
+
+        .light-mode .moon-icon {
+            display: inline;
+        }
+
+        .light-mode .sun-icon {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav>
             <img src="RxBot.png" alt="RYNX BOT Logo" class="logo">
             <ul>
@@ -121,6 +234,14 @@
                 <li><a href="status.html">Status</a></li>
             </ul>
         </nav>
+        <div class="toggle-container">
+            <span class="toggle-label sun-icon">&#x2600;</span>
+            <span class="toggle-label moon-icon">&#x1F319;</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
     </header>
 
     <main>
@@ -141,7 +262,6 @@
             <h3>24/7 Support</h3>
             <p1>We provide round-the-clock support to assist you with any issues or questions you may have regarding the bot.</p1>
             
-          
             <div class="owners">
                 <h3>Our Team</h3>
                 <p><strong>Rynx</strong> - Founder & Lead Developer.</p>
@@ -155,8 +275,28 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy;  2024 RxDev. All rights reserved.Made with Love💖</p>
+    <footer id="footer">
+        <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark Mode Toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            // Load dark mode setting from local storage
+            if (localStorage.getItem('darkMode') === 'true') {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+
+            // Toggle dark mode
+            darkModeToggle.addEventListener('change', function() {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            });
+        });
+    </script>
 </body>
 </html>
