@@ -4,324 +4,296 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="RxBot.png">
-    <title>RxBot | Commands</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+
+    <title>RxBot | Updates</title>
     <style>
         /* Global Styles */
         body, html {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Navbar Styles */
-        .navbar {
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        header.dark-mode, footer.dark-mode {
+            background-color: #000;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1c1c1c;
+            color: white;
+            padding: 10px 0;
+            transition: background-color 0.3s;
+        }
+
+        nav {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            background-color: #1f1f1f;
-            padding: 10px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .navbar .logo img {
-            max-height: 40px;
+        .logo {
+            height: 50px;
         }
 
-        .navbar .content {
+        nav ul {
+            list-style: none;
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
-        .navbar .links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .navbar .links a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 18px;
-        }
-
-        .navbar .links a:hover {
-            color: #ffa500;
-        }
-
-        .navbar .dark-mode-toggle {
-            display: flex;
-            align-items: center;
+        nav ul li {
             margin-left: 20px;
         }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #444;
+            border-radius: 5px;
+        }
+
+        /* Dark Mode Nav Links */
+        nav ul li a.dark-mode {
+            color: #f0f0f0;
+        }
+
+        /* Main Styles */
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .blog h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .blog-post {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 20px 0;
+            padding: 20px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .blog-post h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .blog-post p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Dark Mode Blog Posts */
+        .blog-post.dark-mode {
+            background-color: #444;
+            border-color: #555;
+        }
+
         /* Footer Styles */
         footer {
-            background-color: #1a1a1a;
+            background-color: #1c1c1c;
             color: #fff;
             text-align: center;
             padding: 20px 0;
             transition: background-color 0.3s;
         }
 
-        .dark-mode-toggle span {
-            margin: 0 10px;
+        /* Toggle Switch Styles */
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
             font-size: 18px;
+            color: #fff;
         }
 
-        .dark-mode-toggle input {
-            display: none;
-        }
-
-        .dark-mode-toggle .slider {
+        .switch {
             position: relative;
             display: inline-block;
             width: 60px;
             height: 34px;
-            background-color: #ccc;
-            border-radius: 34px;
-            cursor: pointer;
         }
 
-        .dark-mode-toggle .slider:before {
-            content: '';
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
             position: absolute;
-            height: 26px;
-            width: 26px;
-            background-color: white;
-            border-radius: 50%;
-            bottom: 4px;
-            left: 4px;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
             transition: .4s;
         }
 
-        .dark-mode-toggle input:checked + .slider {
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
             background-color: #2196F3;
         }
 
-        .dark-mode-toggle input:checked + .slider:before {
+        input:checked + .slider:before {
             transform: translateX(26px);
         }
 
-        /* Search Bar Styles */
-        .search-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
+        .slider.round {
+            border-radius: 34px;
         }
 
-        .search-bar {
-            padding: 10px;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 5px;
-            border: 1px solid #333;
-            background-color: #2a2a2a;
-            color: #fff;
+        .slider.round:before {
+            border-radius: 50%;
         }
 
-        /* Filter Button Styles */
-        .filters {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
+        .sun-icon, .moon-icon {
+            font-size: 24px;
+            display: none;
         }
 
-        .filter-btn {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            margin: 0 5px;
-            cursor: pointer;
-            border-radius: 5px;
+        .sun-icon {
+            color: #ffa500;
         }
 
-        /* Commands Grid Styles */
-        .commands {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
+        .moon-icon {
+            color: #f0f0f0;
         }
 
-        .command {
-            background-color: #1f1f1f;
-            padding: 20px;
-            border-radius: 10px;
-            transition: transform 0.3s;
-            border: 1px solid red;
+        .dark-mode .sun-icon {
+            display: inline;
         }
 
-        .command:hover {
-            transform: translateY(-5px);
+        .dark-mode .moon-icon {
+            display: none;
         }
 
-        .command h3 {
-            margin-top: 0;
+        .light-mode .moon-icon {
+            display: inline;
         }
+
+        .light-mode .sun-icon {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo">
-            <img src="RxBot.png" alt="Logo">
+    <header id="header">
+        <nav>
+            <img src="RxBot.png" alt="RYNX BOT Logo" class="logo">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Commands</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="blog.html">Updates</a></li>
+                <li><a href="status.html">Status</a></li>
+            </ul>
+        </nav>
+        <div class="toggle-container">
+            <span class="toggle-label sun-icon">&#x2600;</span>
+            <span class="toggle-label moon-icon">&#x1F319;</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round"></span>
+            </label>
         </div>
-        <div class="content">
-            <div class="links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="services.html">Commands</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="blog.html">Updates</a>
-                <a href="status.html">Status</a>
+    </header>
+
+    <main>
+        <section class="blog">
+            <h2>Update</h2>
+            <div class="blog-post">
+                <h3>RxBot is now Verified.</h3>
+                <p>Hey guys i am excited to say that our RxBot is now Verified Thanks for your love and support💖.</p>
             </div>
-            
+            <div class="blog-post">
+                <h3>Music Support ended.</h3>
+                <p>Hey Guys i am very sad to say that we have discontinue our musics due to limitation by Youtube. Thanks for your support to music.</p>
             </div>
-        </div>
-    </div>
+            <div class="blog-post">
+                <h3>Artificial Intelligence</h3>
+                <p>Now you can use @RxBot to talk with AI.</p>
+            </div>
+            <!-- Additional blog posts can be added here -->
+        </section>
+    </main>
 
-    <div class="search-container">
-        <input type="text" class="search-bar" id="search-bar" placeholder="Search commands...">
-    </div>
-
-    <div class="filters">
-        <button class="filter-btn" onclick="filterCommands('all')">All</button>
-        <button class="filter-btn" onclick="filterCommands('misc')">Misc</button>
-        <button class="filter-btn" onclick="filterCommands('fun')">Fun</button>
-        <button class="filter-btn" onclick="filterCommands('utility')">Utility</button>
-        <button class="filter-btn" onclick="filterCommands('moderation')">Moderation</button>
-    </div>
-
-    <div class="commands" id="commands">
-        <!-- Misc Commands -->
-        <div class="command misc">
-            <h3>/help</h3>
-            <p>Get help about commands</p>
-        </div>
-        <div class="command misc">
-            <h3>/uptime</h3>
-            <p>Check the bot's uptime</p>
-        </div>
-        <div class="command misc">
-            <h3>/ping</h3>
-            <p>Check the bot's latency</p>
-        </div>
-        <div class="command misc">
-            <h3>/owner</h3>
-            <p>Get information about the bot's owner</p>
-        </div>
-        <div class="command misc">
-            <h3>/serverinfo</h3>
-            <p>Get information about the server</p>
-        </div>
-        <div class="command misc">
-            <h3>/userinfo</h3>
-            <p>Get information about a specific user</p>
-        </div>
-        <div class="command misc">
-            <h3>/poll</h3>
-            <p>Create a poll</p>
-        </div>
-        <div class="command misc">
-            <h3>/role</h3>
-            <p>Give or remove a role of a specific user</p>
-        </div>
-        <div class="command misc">
-            <h3>/mclear</h3>
-            <p>Clears messages between 2-100</p>
-        </div>
-        <div class="command misc">
-            <h3>/slowmode</h3>
-            <p>Change the slowmode of a channel or all channels (admin perms or manage channels role)</p>
-        </div>
-        <div class="command misc">
-            <h3>Mystery Commanad?</h3>
-            <p>Mystery Commandd?. Coming Soon!</p>
-        </div>
-        <div class="command misc">
-            <h3>/untimeout</h3>
-            <p>Untimeouts a user</p>
-        </div>
-        <div class="command misc">
-            <h3>/donate</h3>
-            <p>Shows the Rx Development donate page</p>
-        </div>
-        <div class="command misc">
-            <h3>/info</h3>
-            <p>Shows info about the bot and the Developers</p>
-        </div>
-        <div class="command misc">
-            <h3>/devs</h3>
-            <p>Shows info about the bot and the Developers</p>
-        </div>
-
-        <!-- Fun Commands -->
-        <div class="command fun">
-            <h3>/meme</h3>
-            <p>Shows random Meme</p>
-        </div>
-
-        <!-- Utility Commands -->
-        <div class="command utility">
-            <h3>/announcement</h3>
-            <p>You can create announcements (needs admin perms)</p>
-        </div>
-        <div class="command utility">
-          <h3>Mystery Command?</h3>
-          <p>Mystery Command?. Coming Soon!</p>
-        </div>
-
-        <!-- Moderation Commands -->
-        <div class="command moderation">
-            <h3>/ban</h3>
-            <p>Bans a user</p>
-        </div>
-        <div class="command moderation">
-            <h3>/unban</h>
-            <p>Unbans a user</p>
-        </div>
-        <div class="command moderation">
-            <h3>/timeout</h3>
-            <p>Timeouts a user</p>
-        </div>
-    </div>
     <footer id="footer">
-      <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
-  </footer>
+        <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
+    </footer>
+
     <script>
-        function filterCommands(category) {
-            const commands = document.querySelectorAll('.command');
-            commands.forEach(command => {
-                if (category === 'all' || command.classList.contains(category)) {
-                    command.style.display = 'block';
-                } else {
-                    command.style.display = 'none';
-                }
-            });
+        // JavaScript for Dark Mode Toggle
+        const toggleSwitch = document.getElementById('darkModeToggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+            }
         }
 
-        document.getElementById('search-bar').addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            const commands = document.querySelectorAll('.command');
-            commands.forEach(command => {
-                const commandText = command.innerText.toLowerCase();
-                if (commandText.includes(query)) {
-                    command.style.display = 'block';
-                } else {
-                    command.style.display = 'none';
-                }
-            });
-        });
-
-        document.getElementById('darkModeToggle').addEventListener('change', function() {
+        toggleSwitch.addEventListener('change', function() {
             if (this.checked) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+                document.getElementById('header').classList.add('dark-mode');
+                document.getElementById('footer').classList.add('dark-mode');
+                document.querySelectorAll('.blog-post').forEach(post => post.classList.add('dark-mode'));
+                localStorage.setItem('theme', 'dark-mode');
             } else {
-                document.documentElement.removeAttribute('data-theme');
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                document.getElementById('header').classList.remove('dark-mode');
+                document.getElementById('footer').classList.remove('dark-mode');
+                document.querySelectorAll('.blog-post').forEach(post => post.classList.remove('dark-mode'));
+                localStorage.setItem('theme', 'light-mode');
             }
         });
     </script>
