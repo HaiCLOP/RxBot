@@ -13,16 +13,73 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+        }
+
+        /* Dark Mode Styles */
+        body[data-theme='dark'] {
             background-color: #121212;
             color: #ffffff;
         }
 
-        /* Navbar Styles */
+        .navbar[data-theme='dark'] {
+            background-color: #1a1a1a;
+        }
+
+        footer[data-theme='dark'] {
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .search-bar[data-theme='dark'] {
+            background-color: #2a2a2a;
+            color: #fff;
+            border: 1px solid #333;
+        }
+
+        .filter-btn[data-theme='dark'] {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .command[data-theme='dark'] {
+            background-color: #1f1f1f;
+        }
+
+        /* Bright Mode Styles */
+        body[data-theme='bright'] {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .navbar[data-theme='bright'] {
+            background-color: #f1f1f1;
+        }
+
+        footer[data-theme='bright'] {
+            background-color: #f1f1f1;
+            color: #000;
+        }
+
+        .search-bar[data-theme='bright'] {
+            background-color: #ffffff;
+            color: #000;
+            border: 1px solid #ccc;
+        }
+
+        .filter-btn[data-theme='bright'] {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .command[data-theme='bright'] {
+            background-color: #f9f9f9;
+        }
+
+        /* Common Styles */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #1f1f1f;
             padding: 10px 20px;
         }
 
@@ -43,7 +100,6 @@
         }
 
         .navbar .links a {
-            color: #ffffff;
             text-decoration: none;
             margin: 0 10px;
             font-size: 18px;
@@ -53,18 +109,10 @@
             color: #ffa500;
         }
 
-        .navbar .dark-mode-toggle {
+        .dark-mode-toggle {
             display: flex;
             align-items: center;
             margin-left: 20px;
-        }
-        /* Footer Styles */
-        footer {
-            background-color: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            transition: background-color 0.3s;
         }
 
         .dark-mode-toggle span {
@@ -118,9 +166,6 @@
             width: 100%;
             max-width: 400px;
             border-radius: 5px;
-            border: 1px solid #333;
-            background-color: #2a2a2a;
-            color: #fff;
         }
 
         /* Filter Button Styles */
@@ -131,8 +176,6 @@
         }
 
         .filter-btn {
-            background-color: #333;
-            color: #fff;
             border: none;
             padding: 10px 20px;
             margin: 0 5px;
@@ -149,7 +192,6 @@
         }
 
         .command {
-            background-color: #1f1f1f;
             padding: 20px;
             border-radius: 10px;
             transition: transform 0.3s;
@@ -163,10 +205,16 @@
         .command h3 {
             margin-top: 0;
         }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            transition: background-color 0.3s;
+        }
     </style>
 </head>
-<body>
-    <div class="navbar">
+<body data-theme="dark">
+    <div class="navbar" data-theme="dark">
         <div class="logo">
             <img src="RxBot.png" alt="Logo">
         </div>
@@ -179,119 +227,122 @@
                 <a href="blog.html">Updates</a>
                 <a href="status.html">Status</a>
             </div>
-            
+            <div class="dark-mode-toggle">
+                <span>🌞</span>
+                <input type="checkbox" id="darkModeToggle">
+                <label for="darkModeToggle" class="slider"></label>
+                <span>🌜</span>
             </div>
         </div>
     </div>
 
     <div class="search-container">
-        <input type="text" class="search-bar" id="search-bar" placeholder="Search commands...">
+        <input type="text" class="search-bar" id="search-bar" placeholder="Search commands..." data-theme="dark">
     </div>
 
     <div class="filters">
-        <button class="filter-btn" onclick="filterCommands('all')">All</button>
-        <button class="filter-btn" onclick="filterCommands('misc')">Misc</button>
-        <button class="filter-btn" onclick="filterCommands('fun')">Fun</button>
-        <button class="filter-btn" onclick="filterCommands('utility')">Utility</button>
-        <button class="filter-btn" onclick="filterCommands('moderation')">Moderation</button>
+        <button class="filter-btn" onclick="filterCommands('all')" data-theme="dark">All</button>
+        <button class="filter-btn" onclick="filterCommands('misc')" data-theme="dark">Misc</button>
+        <button class="filter-btn" onclick="filterCommands('fun')" data-theme="dark">Fun</button>
+        <button class="filter-btn" onclick="filterCommands('utility')" data-theme="dark">Utility</button>
+        <button class="filter-btn" onclick="filterCommands('moderation')" data-theme="dark">Moderation</button>
     </div>
 
-    <div class="commands" id="commands">
+    <div class="commands" id="commands" data-theme="dark">
         <!-- Misc Commands -->
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/help</h3>
             <p>Get help about commands</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/uptime</h3>
             <p>Check the bot's uptime</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/ping</h3>
             <p>Check the bot's latency</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/owner</h3>
             <p>Get information about the bot's owner</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/serverinfo</h3>
             <p>Get information about the server</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/userinfo</h3>
             <p>Get information about a specific user</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/poll</h3>
             <p>Create a poll</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/role</h3>
             <p>Give or remove a role of a specific user</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/mclear</h3>
             <p>Clears messages between 2-100</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/slowmode</h3>
             <p>Change the slowmode of a channel or all channels (admin perms or manage channels role)</p>
         </div>
-        <div class="command misc">
-            <h3>Mystery Commnad?</h3>
-            <p>Mystery Commnad?. Coming Soon!</p>
-        </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/untimeout</h3>
             <p>Untimeouts a user</p>
         </div>
-        <div class="command misc">
+       
+        <div class="command misc" data-theme="dark">
             <h3>/donate</h3>
             <p>Shows the Rx Development donate page</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/info</h3>
             <p>Shows info about the bot and the Developers</p>
         </div>
-        <div class="command misc">
+        <div class="command misc" data-theme="dark">
             <h3>/devs</h3>
             <p>Shows info about the bot and the Developers</p>
         </div>
 
         <!-- Fun Commands -->
-        <div class="command fun">
+        <div class="command fun" data-theme="dark">
             <h3>/meme</h3>
             <p>Shows random Meme</p>
         </div>
 
         <!-- Utility Commands -->
-        <div class="command utility">
+        <div class="command utility" data-theme="dark">
             <h3>/announcement</h3>
             <p>You can create announcements (needs admin perms)</p>
         </div>
-        <div class="command utility">
-          <h3>Mystery Commnad?</h3>
-          <p>Mystery Commnad?. Coming Soon!</p>
+        <div class="command utility" data-theme="dark">
+            <h3>Mystery Command?</h3>
+            <p>Mystery Command. Coming Soon!</p>
         </div>
 
         <!-- Moderation Commands -->
-        <div class="command moderation">
+        <div class="command moderation" data-theme="dark">
             <h3>/ban</h3>
             <p>Bans a user</p>
         </div>
-        <div class="command moderation">
-            <h3>/unban</h>
+        <div class="command moderation" data-theme="dark">
+            <h3>/unban</h3>
             <p>Unbans a user</p>
         </div>
-        <div class="command moderation">
+        <div class="command moderation" data-theme="dark">
             <h3>/timeout</h3>
             <p>Timeouts a user</p>
         </div>
     </div>
-    <footer id="footer">
-      <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
-  </footer>
+
+    <footer id="footer" data-theme="dark">
+        <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
+    </footer>
+
     <script>
         function filterCommands(category) {
             const commands = document.querySelectorAll('.command');
@@ -318,11 +369,9 @@
         });
 
         document.getElementById('darkModeToggle').addEventListener('change', function() {
-            if (this.checked) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-            }
+            const theme = this.checked ? 'bright' : 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+            document.querySelectorAll('[data-theme]').forEach(el => el.setAttribute('data-theme', theme));
         });
     </script>
 </body>
