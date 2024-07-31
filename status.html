@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Status</title>
+    <style>
+        body {
+            background-color: #2e2e2e;
+            font-family: Arial, sans-serif;
+            color: #d3d3d3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .status-card {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        .status-icon {
+            font-size: 40px;
+            color: #6a0dad;
+        }
+
+        .online {
+            color: #6a0dad; /* Purple color for the online checkmark */
+        }
+
+        .status-details {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-card">
+        <div class="status-icon">
+            <span class="online">&#10004;</span>
+        </div>
+        <div class="status-details">
+            <h2>Euphony</h2>
+            <p id="status">Online</p>
+            <p>Latency: <span id="latency">-- ms</span></p>
+            <p>Uptime: <span id="uptime">--d --h --m --s</span></p>
+            <p>Servers: <span id="servers">--</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Simulate fetching data from an API
+        function fetchBotStatus() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        latency: 65,
+                        uptime: '9d 16h 44m 28s',
+                        servers: 12
+                    });
+                }, 1000); // Simulate network delay
+            });
+        }
+
+        // Function to update the status card with fetched data
+        async function updateStatus() {
+            const status = await fetchBotStatus();
+
+            document.getElementById('latency').textContent = `${status.latency} ms`;
+            document.getElementById('uptime').textContent = status.uptime;
+            document.getElementById('servers').textContent = status.servers;
+        }
+
+        // Update status on page load
+        updateStatus();
+    </script>
+</body>
+</html>

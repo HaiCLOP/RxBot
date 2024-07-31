@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="RxBot.png">
+    <title>RxBot | Home</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        header.dark-mode, footer.dark-mode {
+            background-color: #000;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 15px 0;
+            transition: background-color 0.3s;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffa500;
+        }
+
+        /* Dark Mode Nav Links */
+        nav ul li a.dark-mode {
+            color: #f0f0f0;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            background: url('background.gif') no-repeat center center/cover;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin: 10px 0 20px;
+        }
+
+        .hero a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ffa500;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .hero a:hover {
+            background-color: #e59400;
+        }
+
+        /* About Us Section */
+        .about {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .about .owners {
+            margin-top: 30px;
+        }
+
+        .about .owners h3 {
+            font-size: 24px;
+        }
+
+        .about .owners p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .about .discord-link {
+            margin-top: 20px;
+        }
+
+        .about .discord-link a {
+            font-size: 18px;
+            color: #7289da;
+            text-decoration: none;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            transition: background-color 0.3s;
+        }
+
+        /* Dark Mode Footer */
+        footer.dark-mode {
+            background-color: #000;
+        }
+
+        /* Toggle Switch Styles */
+        .toggle-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .sun-icon, .moon-icon {
+            font-size: 24px;
+            display: none;
+        }
+
+        .sun-icon {
+            color: #ffa500;
+        }
+
+        .moon-icon {
+            color: #f0f0f0;
+        }
+
+        .dark-mode .sun-icon {
+            display: inline;
+        }
+
+        .dark-mode .moon-icon {
+            display: none;
+        }
+
+        .light-mode .moon-icon {
+            display: inline;
+        }
+
+        .light-mode .sun-icon {
+            display: none;
+        }
+
+        /* Cookies Modal */
+        .cookies-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .cookies-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .cookies-content h2 {
+            margin-top: 0;
+        }
+
+        .cookies-content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .cookies-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .cookies-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cookies-buttons .accept {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .cookies-buttons .decline {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .cookies-buttons button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <img src="RxBot.png" alt="RYNX BOT Logo" class="logo">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Commands</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="blog.html">Updates</a></li>
+                <li><a href="status.html">Status</a></li>
+            </ul>
+        </nav>
+        <div class="toggle-container">
+            <span class="toggle-label sun-icon">&#x2600;</span>
+            <span class="toggle-label moon-icon">&#x1F319;</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 id="typing-text"></h1>
+                <p>Perfect Multitasker AI bot For your amazing server.</p>
+                <a href="https://discord.com/oauth2/authorize?client_id=1231317504052428850&permissions=18125264550982&scope=bot+applications.commands">Invite Now!</a>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>About RxBot</h2>
+            <p>The Discord RxBot is a powerful and versatile bot designed to enhance your Discord server experience. Developed with the latest technologies, our bot offers a wide range of features to streamline moderation, entertainment, and community engagement.</p>
+
+            <p>Our mission is to provide Discord server owners and administrators with a reliable and customizable bot solution that meets their specific needs. Whether you're managing a small community or a large gaming server, our bot has you covered.</p>
+                
+            <p>At Discord RxBot, we are committed to continuous improvement and innovation. We value feedback from our users and actively incorporate it into our development process to ensure we deliver the best possible experience.</p>
+            <div class="owners">
+                <h3>Our Team</h3>
+                <p><strong>Rynx</strong> - Founder & Lead Developer.</p>
+                <p><strong>S2009</strong> - Co-Founder & JS Developer.</p>
+                <p><strong>HaiCLOP</strong> - Community Manager & Web Developer.</p>
+                <p>Join our Discord community to connect with us and stay updated on our latest projects and offers.</p>
+                <div class="discord-link">
+                    <a href="https://discord.gg/XKTkZvAaUY" target="_blank">Join Our Discord Server</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
+    </footer>
+
+    <!-- Cookies Modal -->
+    <div class="cookies-modal" id="cookiesModal">
+        <div class="cookies-content">
+            <h2>Cookie Consent</h2>
+            <p>We use cookies to enhance your browsing experience, personalize content, and analyze our traffic. By clicking "Accept," you consent to our use of cookies. For more information, please read our <a href="#">Privacy Policy</a>.</p>
+            <div class="cookies-buttons">
+                <button class="accept" id="acceptCookies">Accept</button>
+                <button class="decline" id="declineCookies">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Typing Effect
+            const typingText = document.getElementById('typing-text');
+            const text = 'Welcome to RxBot Site.';
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    typingText.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(type, 100);
+                }
+            }
+
+            type();
+
+            // Dark Mode Toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const header = document.getElementById('header');
+            const footer = document.getElementById('footer');
+            const navLinks = document.querySelectorAll('nav ul li a');
+
+            // Check local storage for dark mode preference
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                header.classList.add('dark-mode');
+                footer.classList.add('dark-mode');
+                navLinks.forEach(link => link.classList.add('dark-mode'));
+                darkModeToggle.checked = true;
+            } else {
+                body.classList.add('light-mode');
+                darkModeToggle.checked = false;
+            }
+
+            darkModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    body.classList.add('dark-mode');
+                    body.classList.remove('light-mode');
+                    header.classList.add('dark-mode');
+                    footer.classList.add('dark-mode');
+                    navLinks.forEach(link => link.classList.add('dark-mode'));
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    header.classList.remove('dark-mode');
+                    footer.classList.remove('dark-mode');
+                    navLinks.forEach(link => link.classList.remove('dark-mode'));
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+
+            // Cookies Modal
+            const cookiesModal = document.getElementById('cookiesModal');
+            const acceptCookies = document.getElementById('acceptCookies');
+            const declineCookies = document.getElementById('declineCookies');
+
+            if (!localStorage.getItem('cookiesAccepted')) {
+                cookiesModal.style.display = 'flex';
+            }
+
+            acceptCookies.addEventListener('click', () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookiesModal.style.display = 'none';
+            });
+
+            declineCookies.addEventListener('click', () => {
+                cookiesModal.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="RxBot.png">
+    <title>RxBot | Commands</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1f1f1f;
+            padding: 10px 20px;
+        }
+
+        .navbar .logo img {
+            max-height: 40px;
+        }
+
+        .navbar .content {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+        }
+
+        .navbar .links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar .links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+
+        .navbar .links a:hover {
+            color: #ffa500;
+        }
+
+        .navbar .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        /* Footer Styles */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode-toggle span {
+            margin: 0 10px;
+            font-size: 18px;
+        }
+
+        .dark-mode-toggle input {
+            display: none;
+        }
+
+        .dark-mode-toggle .slider {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            background-color: #ccc;
+            border-radius: 34px;
+            cursor: pointer;
+        }
+
+        .dark-mode-toggle .slider:before {
+            content: '';
+            position: absolute;
+            height: 26px;
+            width: 26px;
+            background-color: white;
+            border-radius: 50%;
+            bottom: 4px;
+            left: 4px;
+            transition: .4s;
+        }
+
+        .dark-mode-toggle input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        .dark-mode-toggle input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Search Bar Styles */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-bar {
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+
+        /* Filter Button Styles */
+        .filters {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .filter-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Commands Grid Styles */
+        .commands {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .command {
+            background-color: #1f1f1f;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            border: 1px solid red;
+        }
+
+        .command:hover {
+            transform: translateY(-5px);
+        }
+
+        .command h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="RxBot.png" alt="Logo">
+        </div>
+        <div class="content">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Commands</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="blog.html">Updates</a>
+                <a href="status.html">Status</a>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-bar" id="search-bar" placeholder="Search commands...">
+    </div>
+
+    <div class="filters">
+        <button class="filter-btn" onclick="filterCommands('all')">All</button>
+        <button class="filter-btn" onclick="filterCommands('misc')">Misc</button>
+        <button class="filter-btn" onclick="filterCommands('fun')">Fun</button>
+        <button class="filter-btn" onclick="filterCommands('utility')">Utility</button>
+        <button class="filter-btn" onclick="filterCommands('moderation')">Moderation</button>
+    </div>
+
+    <div class="commands" id="commands">
+        <!-- Misc Commands -->
+        <div class="command misc">
+            <h3>/help</h3>
+            <p>Get help about commands</p>
+        </div>
+        <div class="command misc">
+            <h3>/uptime</h3>
+            <p>Check the bot's uptime</p>
+        </div>
+        <div class="command misc">
+            <h3>/ping</h3>
+            <p>Check the bot's latency</p>
+        </div>
+        <div class="command misc">
+            <h3>/owner</h3>
+            <p>Get information about the bot's owner</p>
+        </div>
+        <div class="command misc">
+            <h3>/serverinfo</h3>
+            <p>Get information about the server</p>
+        </div>
+        <div class="command misc">
+            <h3>/userinfo</h3>
+            <p>Get information about a specific user</p>
+        </div>
+        <div class="command misc">
+            <h3>/poll</h3>
+            <p>Create a poll</p>
+        </div>
+        <div class="command misc">
+            <h3>/role</h3>
+            <p>Give or remove a role of a specific user</p>
+        </div>
+        <div class="command misc">
+            <h3>/mclear</h3>
+            <p>Clears messages between 2-100</p>
+        </div>
+        <div class="command misc">
+            <h3>/slowmode</h3>
+            <p>Change the slowmode of a channel or all channels (admin perms or manage channels role)</p>
+        </div>
+        <div class="command misc">
+            <h3>Mystery Commnad?</h3>
+            <p>Mystery Commnad?. Coming Soon!</p>
+        </div>
+        <div class="command misc">
+            <h3>/untimeout</h3>
+            <p>Untimeouts a user</p>
+        </div>
+        <div class="command misc">
+            <h3>/donate</h3>
+            <p>Shows the Rx Development donate page</p>
+        </div>
+        <div class="command misc">
+            <h3>/info</h3>
+            <p>Shows info about the bot and the Developers</p>
+        </div>
+        <div class="command misc">
+            <h3>/devs</h3>
+            <p>Shows info about the bot and the Developers</p>
+        </div>
+
+        <!-- Fun Commands -->
+        <div class="command fun">
+            <h3>/meme</h3>
+            <p>Shows random Meme</p>
+        </div>
+
+        <!-- Utility Commands -->
+        <div class="command utility">
+            <h3>/announcement</h3>
+            <p>You can create announcements (needs admin perms)</p>
+        </div>
+        <div class="command utility">
+          <h3>Mystery Commnad?</h3>
+          <p>Mystery Commnad?. Coming Soon!</p>
+        </div>
+
+        <!-- Moderation Commands -->
+        <div class="command moderation">
+            <h3>/ban</h3>
+            <p>Bans a user</p>
+        </div>
+        <div class="command moderation">
+            <h3>/unban</h>
+            <p>Unbans a user</p>
+        </div>
+        <div class="command moderation">
+            <h3>/timeout</h3>
+            <p>Timeouts a user</p>
+        </div>
+    </div>
+    <footer id="footer">
+      <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
+  </footer>
+    <script>
+        function filterCommands(category) {
+            const commands = document.querySelectorAll('.command');
+            commands.forEach(command => {
+                if (category === 'all' || command.classList.contains(category)) {
+                    command.style.display = 'block';
+                } else {
+                    command.style.display = 'none';
+                }
+            });
+        }
+
+        document.getElementById('search-bar').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const commands = document.querySelectorAll('.command');
+            commands.forEach(command => {
+                const commandText = command.innerText.toLowerCase();
+                if (commandText.includes(query)) {
+                    command.style.display = 'block';
+                } else {
+                    command.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('darkModeToggle').addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        });
+    </script>
+</body>
+</html>
