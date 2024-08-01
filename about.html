@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    =<meta property="og:description" content="a powerful and versatile bot designed to enhance your Discord server experience.">
+    <meta name="description" content="Want a custom discord bot? No Problem! We Provide custom discord bot at cheap prices.">
+    <link rel="icon" href="RxBot.png">
+    <meta property="og:title" content="RxBot">
+    <meta property="og:description" content="a powerful and versatile bot designed to enhance your Discord server experience.">
     <meta property="og:url" content="https://rxdev.site">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://rxdev.site/RxBot.png">
-    <link rel="icon" href="RxBot.png">
     <title>RxBot | About Us</title>
     <style>
         /* Global Styles */
@@ -15,24 +17,14 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* Dark Mode Styles */
-        body.dark-mode {
             background-color: #333;
             color: #f0f0f0;
-        }
-
-        header.dark-mode, footer.dark-mode {
-            background-color: #000;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Header Styles */
         header {
-            background-color: #1a1a1a;
+            background-color: #000;
             color: #fff;
             padding: 15px 0;
             transition: background-color 0.3s;
@@ -48,6 +40,7 @@
         }
 
         .logo {
+            filter: drop-shadow(12px 8px 10px orange);
             height: 60px;
         }
 
@@ -63,7 +56,7 @@
         }
 
         nav ul li a {
-            color: #fff;
+            color: #f0f0f0;
             text-decoration: none;
             font-size: 18px;
             transition: color 0.3s;
@@ -71,11 +64,6 @@
 
         nav ul li a:hover {
             color: #ffa500;
-        }
-
-        /* Dark Mode Nav Links */
-        nav ul li a.dark-mode {
-            color: #f0f0f0;
         }
 
         /* About Section */
@@ -121,111 +109,16 @@
 
         /* Footer Styles */
         footer {
-            background-color: #1a1a1a;
+            background-color: #000;
             color: #fff;
             text-align: center;
             padding: 20px 0;
             transition: background-color 0.3s;
         }
-
-        /* Toggle Switch Styles */
-        .toggle-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .toggle-label {
-            margin-right: 10px;
-            font-size: 18px;
-            color: #fff;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-        }
-
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-
-        .sun-icon, .moon-icon {
-            font-size: 24px;
-            display: none;
-        }
-
-        .sun-icon {
-            color: #ffa500;
-        }
-
-        .moon-icon {
-            color: #f0f0f0;
-        }
-
-        .dark-mode .sun-icon {
-            display: inline;
-        }
-
-        .dark-mode .moon-icon {
-            display: none;
-        }
-
-        .light-mode .moon-icon {
-            display: inline;
-        }
-
-        .light-mode .sun-icon {
-            display: none;
-        }
     </style>
 </head>
 <body>
-    <header id="header">
+    <header>
         <nav>
             <img src="RxBot.png" alt="RYNX BOT Logo" class="logo">
             <ul>
@@ -237,14 +130,6 @@
                 <li><a href="status.html">Status</a></li>
             </ul>
         </nav>
-        <div class="toggle-container">
-            <span class="toggle-label sun-icon">&#x2600;</span>
-            <span class="toggle-label moon-icon">&#x1F319;</span>
-            <label class="switch">
-                <input type="checkbox" id="darkModeToggle">
-                <span class="slider round"></span>
-            </label>
-        </div>
     </header>
 
     <main>
@@ -260,8 +145,8 @@
             <p1>Our bot is built with a modular design, allowing you to enable or disable features based on your server's needs.</p1>
             <h3>Interactive Commands</h3>
             <p1>Our bot offers interactive commands for fun games, useful utilities, and server management tasks.</p1>
-            <h3>Artificial Intellegence</h3>
-            <p1>Our bot is ingrated with A.I use @RxBot to ask something.</p1>
+            <h3>Artificial Intelligence</h3>
+            <p1>Our bot is integrated with AI; use @RxBot to ask something.</p1>
             <h3>24/7 Support</h3>
             <p1>We provide round-the-clock support to assist you with any issues or questions you may have regarding the bot.</p1>
             
@@ -272,34 +157,14 @@
                 <p><strong>HaiCLOP</strong> - Community Manager & Web Developer.</p>
                 <p>Join our Discord server to connect with the team and stay updated on our latest developments and offers.</p>
                 <div class="discord-link">
-                    <a href="https://discord.gg/yourserver" target="_blank">Join Our Discord Community</a>
+                    <a href="https://discord.gg/gchZwRP8QH" target="_blank">Join Our Discord Community</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="footer">
+    <footer>
         <p>&copy; 2024 RxDev. All rights reserved. Made with Love💖</p>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Dark Mode Toggle
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const body = document.body;
-
-            // Load dark mode setting from local storage
-            if (localStorage.getItem('darkMode') === 'true') {
-                body.classList.add('dark-mode');
-                darkModeToggle.checked = true;
-            }
-
-            // Toggle dark mode
-            darkModeToggle.addEventListener('change', function() {
-                body.classList.toggle('dark-mode');
-                localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
-            });
-        });
-    </script>
 </body>
 </html>
