@@ -123,6 +123,17 @@
             padding: 20px 0;
         }
     </style>
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+            const name = document.querySelector('input[name="name"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const message = document.querySelector('textarea[name="message"]').value;
+            
+            const mailtoLink = `mailto:rynx_partnership@yahoo.com?subject=Contact from ${name}&body=Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+            window.location.href = mailtoLink;
+        }
+    </script>
 </head>
 <body>
     <header id="header">
@@ -143,7 +154,7 @@
         <section class="contact">
             <h2>Contact Us</h2>
             <p>If you have any questions or would like to inquire about our bot or services, please fill out the form below, and we'll get back to you as soon as possible.</p>
-            <form action="submit_form.php" method="post">
+            <form onsubmit="sendEmail(event)">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Your Email" required>
                 <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
